@@ -10,9 +10,8 @@ def app(request):
   return fixture
 
 def test_login(app):
-  app.login(Group(user_name="user101", password="123456"))
-  app.logout()
-
+  app.session.login(Group(user_name="user101", password="123456"))
+  app.session.logout()
 def test_login_empty(app):
-  app.login(Group(user_name="", password=""))
+  app.session.login(Group(user_name="", password=""))
 
