@@ -3,16 +3,17 @@ class SessionHelper:
     def __init__(self, app):
         self.app = app
 
-    def login(self, group):
+    def login(self, user_name, password):
         wd = self.app.wd
         self.app.open()
         # login
-        wd.find_element(By.ID, "edit-saas-login").send_keys(group.user_name)
-        wd.find_element(By.ID, "edit-saas-pass").click()
-        wd.find_element(By.ID, "edit-saas-pass").send_keys(group.password)
-        wd.find_element(By.ID, "edit-submit").click()
-        wd.find_element(By.CSS_SELECTOR, "#user_select_pos .l-btn-text").click()
+        wd.find_element_by_id("edit-saas-login").send_keys(user_name)
+        wd.find_element_by_id("edit-saas-pass").click()
+        wd.find_element_by_id("edit-saas-pass").send_keys(password)
+        wd.find_element_by_id("edit-submit").click()
+        wd.find_element_by_id("user_select_pos").click()
 
     def logout(self):
         wd = self.app.wd
-        wd.find_element(By.CSS_SELECTOR, "#mainLogoutButton .l-btn-text").click()
+        wd.implicitly_wait(10)
+        wd.find_element_by_id("mainLogoutButton").click()
